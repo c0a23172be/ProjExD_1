@@ -13,6 +13,8 @@ def main():
     bg_img2 = pg.transform.flip(bg_img, True, False)
     kk_img = pg.image.load("fig/3.png")
     kk_img = pg.transform.flip(kk_img, True, False)
+    kk_img = pg.transform.rotozoom(kk_img, 10, 1.0)
+
     kk_rct = kk_img.get_rect() #こうかとんRectの抽出
     kk_rct.center = 300, 200 
     tmr = 0
@@ -26,14 +28,18 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img, [-x+4800, 0])
         key_lst = pg.key.get_pressed()  # 全キーの押下状態を取得
+        # こうかとんの移動速度を設定
+        move_speed = 1
         if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
-            kk_rct.move_ip(0, -1)
+            kk_rct.move_ip(0, -move_speed)
         if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
-            kk_rct.move_ip(0, +1)
+            kk_rct.move_ip(0, move_speed)
         if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
-            kk_rct.move_ip(-1, 0)
+            kk_rct.move_ip(-move_speed, 0)
         if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
-            kk_rct.move_ip(+1, 0)
+            kk_rct.move_ip(move_speed * 2, 0)
+        else:
+            kk_rct.move_ip(-move_speed, 0)  # 何もキーを押していない場合は左に流れる
 
         screen.blit(kk_img, kk_rct) #kk_imgをkk_rctの設定にしたがって貼り付け
         

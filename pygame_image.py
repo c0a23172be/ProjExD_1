@@ -28,19 +28,19 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img, [-x+4800, 0])
         key_lst = pg.key.get_pressed()  # 全キーの押下状態を取得
-        # こうかとんの移動速度を設定
-        move_speed = 1
+        move_speed = 1  # こうかとんの移動速度を設定
+        move_x, move_y = 0, 0
         if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
-            kk_rct.move_ip(0, -move_speed)
+            move_y = move_speed
         if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
-            kk_rct.move_ip(0, move_speed)
+            move_y = -move_speed
         if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
-            kk_rct.move_ip(-move_speed, 0)
+            move_x = -move_speed
         if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
-            kk_rct.move_ip(move_speed * 2, 0)
+            move_x = move_speed*2
         else:
-            kk_rct.move_ip(-move_speed, 0)  # 何もキーを押していない場合は左に流れる
-
+            move_x=-move_speed  # 何もキーを押していない場合は左に流れる
+        kk_rct.move_ip(move_x, move_y)
         screen.blit(kk_img, kk_rct) #kk_imgをkk_rctの設定にしたがって貼り付け
         
         pg.display.update()

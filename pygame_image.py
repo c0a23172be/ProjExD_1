@@ -24,16 +24,17 @@ def main():
         
         x = tmr%3200
         screen.blit(bg_img, [-x, 0])
-        screen.blit(bg_img, [-x+1600, 0])
+        screen.blit(bg_img2, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
-        screen.blit(bg_img, [-x+4800, 0])
+        screen.blit(bg_img2, [-x+4800, 0])
         key_lst = pg.key.get_pressed()  # 全キーの押下状態を取得
         move_speed = 1  # こうかとんの移動速度を設定
         move_x, move_y = 0, 0
+
         if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
             move_y = -move_speed
         if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
-            move_y = move_speed
+            move_y =move_speed
         if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
             move_x = -move_speed
         if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら

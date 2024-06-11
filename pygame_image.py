@@ -19,6 +19,9 @@ def main():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [0, 0])
+        kk_rct = kk_img.get_rect() #画像Surfaceに対応する画像Rectを取得する
+        kk_rct.center = 300, 200 #中心座標を300, 200に設定する
+        screen.blit(kk_img, kk_rct) #画像SurfaceをスクリーンSurfaceにRectに従って貼り付ける
         pg.display.update()
         tmr += 1        
         clock.tick(10)

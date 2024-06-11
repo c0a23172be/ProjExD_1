@@ -10,6 +10,7 @@ def main():
     screen = pg.display.set_mode((800, 600))
     clock  = pg.time.Clock()
     bg_img = pg.image.load("fig/pg_bg.jpg")
+    bg_img2 = pg.transform.flip(bg_img, True, False)
     kk_img = pg.image.load("fig/3.png")
     kk_img = pg.transform.flip(kk_img, True, False)
     kk_img = pg.transform.rotozoom(kk_img, 10, 1.0)
@@ -17,15 +18,18 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        x = tmr%800
+        x = tmr%3200
         screen.blit(bg_img, [-x, 0])
-        kk_rct = kk_img.get_rect() #画像Surfaceに対応する画像Rectを取得する
+        screen.blit(bg_img, [-x+1600, 0])
+        screen.blit(bg_img, [-x+3200, 0])
+        screen.blit(bg_img, [-x+4800, 0])
+        kk_rct = kk_img.get_rect() #こうかとんRectの抽出
         kk_rct.center = 300, 200 #中心座標を300, 200に設定する
-        screen.blit(kk_img, kk_rct) #画像SurfaceをスクリーンSurfaceにRectに従って貼り付ける
+        screen.blit(kk_img, kk_rct) #kk_imgをkk_rctの設定にしたがって貼り付け
         
         pg.display.update()
         tmr += 1        
-        clock.tick(200)
+        clock.tick(2000)
 
 
 if __name__ == "__main__":
